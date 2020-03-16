@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2770A65F20120EA6006EF37E /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2770A65D20120E88006EF37E /* VideoToolbox.framework */; };
+		2A3CA2D2241FBB9400F7FE3D /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3CA2D1241FBB9400F7FE3D /* ReplayKit.framework */; };
+		2A3CA2D4241FBB9A00F7FE3D /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3CA2D3241FBB9A00F7FE3D /* CoreBluetooth.framework */; };
+		2A3CA2D8241FBC2D00F7FE3D /* MobileRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3CA2D6241FBC2D00F7FE3D /* MobileRTC.framework */; };
+		2A3CA2D9241FBC2D00F7FE3D /* MobileRTCScreenShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3CA2D7241FBC2D00F7FE3D /* MobileRTCScreenShare.framework */; };
+		2A3CA2DB241FBC3F00F7FE3D /* MobileRTCResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2A3CA2DA241FBC3E00F7FE3D /* MobileRTCResources.bundle */; };
 		B3E7B58A1CC2AC0600A0062D /* RNMobileRTC.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNMobileRTC.m */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +31,11 @@
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNMobileRTC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNMobileRTC.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2770A65D20120E88006EF37E /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		2A3CA2D1241FBB9400F7FE3D /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
+		2A3CA2D3241FBB9A00F7FE3D /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreBluetooth.framework; sourceTree = DEVELOPER_DIR; };
+		2A3CA2D6241FBC2D00F7FE3D /* MobileRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileRTC.framework; path = ../../lib/MobileRTC.framework; sourceTree = "<group>"; };
+		2A3CA2D7241FBC2D00F7FE3D /* MobileRTCScreenShare.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileRTCScreenShare.framework; path = ../../lib/MobileRTCScreenShare.framework; sourceTree = "<group>"; };
+		2A3CA2DA241FBC3E00F7FE3D /* MobileRTCResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MobileRTCResources.bundle; path = ../lib/MobileRTCResources.bundle; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNMobileRTC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNMobileRTC.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNMobileRTC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNMobileRTC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -35,6 +45,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A3CA2D8241FBC2D00F7FE3D /* MobileRTC.framework in Frameworks */,
+				2A3CA2D9241FBC2D00F7FE3D /* MobileRTCScreenShare.framework in Frameworks */,
+				2A3CA2D4241FBB9A00F7FE3D /* CoreBluetooth.framework in Frameworks */,
+				2A3CA2D2241FBB9400F7FE3D /* ReplayKit.framework in Frameworks */,
 				2770A65F20120EA6006EF37E /* VideoToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -53,6 +67,10 @@
 		2770A65320120A45006EF37E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2A3CA2D6241FBC2D00F7FE3D /* MobileRTC.framework */,
+				2A3CA2D7241FBC2D00F7FE3D /* MobileRTCScreenShare.framework */,
+				2A3CA2D3241FBB9A00F7FE3D /* CoreBluetooth.framework */,
+				2A3CA2D1241FBB9400F7FE3D /* ReplayKit.framework */,
 				2770A65D20120E88006EF37E /* VideoToolbox.framework */,
 			);
 			path = Frameworks;
@@ -61,6 +79,7 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				2A3CA2DA241FBC3E00F7FE3D /* MobileRTCResources.bundle */,
 				2770A65320120A45006EF37E /* Frameworks */,
 				B3E7B5881CC2AC0600A0062D /* RNMobileRTC.h */,
 				B3E7B5891CC2AC0600A0062D /* RNMobileRTC.m */,
@@ -108,6 +127,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
@@ -125,6 +145,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A3CA2DB241FBC3F00F7FE3D /* MobileRTCResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

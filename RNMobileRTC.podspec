@@ -20,5 +20,6 @@ Pod::Spec.new do |s|
 
   s.dependency "React"
 
-  s.vendored_frameworks = 'VideoToolbox.framework', "ReplayKit.framework", "CoreBluetooth.framework"
+  s.frameworks = 'VideoToolbox', "ReplayKit", "CoreBluetooth"
+  s.vendored_frameworks = "lib/MobileRTC.framework", "lib/MobileRTCScreenShare.framework"
 end
