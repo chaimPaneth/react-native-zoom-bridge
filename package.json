@@ -1,70 +1,36 @@
 {
-  "_from": "react-native-zoom-bridge@^1.0.1",
-  "_id": "react-native-zoom-bridge@1.0.2",
-  "_inBundle": false,
-  "_integrity": "sha512-TPKOKMEvHmHKS8NJO6xZlMZ8CxmAjXrzCLYXzXvXJxeFaJOynKaFL7geZRoBQzmex2b9GbZI3El56iwBx5g+KA==",
-  "_location": "/react-native-zoom-bridge",
-  "_phantomChildren": {
-    "big-integer": "1.6.48",
-    "stream-buffers": "2.2.0",
-    "uuid": "3.4.0",
-    "xmldom": "0.1.31"
-  },
-  "_requested": {
-    "type": "range",
-    "registry": true,
-    "raw": "react-native-zoom-bridge@^1.0.1",
-    "name": "react-native-zoom-bridge",
-    "escapedName": "react-native-zoom-bridge",
-    "rawSpec": "^1.0.1",
-    "saveSpec": null,
-    "fetchSpec": "^1.0.1"
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "https://registry.npmjs.org/react-native-zoom-bridge/-/react-native-zoom-bridge-1.0.2.tgz",
-  "_shasum": "089bf6db13b54868403350a43986451289d78f9a",
-  "_spec": "react-native-zoom-bridge@^1.0.1",
-  "_where": "/Users/chaimpaneth/Projects/NCSY-App/NCSY",
-  "author": {
-    "name": "chaimPaneth",
-    "email": "chaim@chaimpaneth.com"
-  },
-  "bugs": {
-    "url": "https://github.com/chaimPaneth/react-native-zoom-bridge/issues"
-  },
-  "bundleDependencies": false,
-  "dependencies": {
-    "xcode": "^1.0.0"
-  },
-  "deprecated": false,
+  "name": "react-native-zoom-bridge",
+  "version": "1.0.3",
   "description": "Zoom.us SDK bridge for React Native",
-  "homepage": "https://github.com/chaimPaneth/react-native-zoom-bridge#readme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaimPaneth/react-native-zoom-bridge.git"
+  },
   "keywords": [
     "react-native",
     "Zoom MobileRTC SDK",
     "video calls"
   ],
-  "license": "MIT",
-  "main": "index.js",
-  "name": "react-native-zoom-bridge",
+  "author": "chaimPaneth <chaim@chaimpaneth.com> (chaimpaneth.com",
+ "license": "MIT",
   "peerDependencies": {
     "react": "~15.4.0-rc.4",
     "react-native": "^0.40.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chaimPaneth/react-native-zoom-bridge.git"
+  "dependencies": {
+    "xcode": "^1.0.0"
   },
   "rnpm": {
     "commands": {
       "postlink": "node node_modules/react-native-zoom-sdk/scripts/postlink"
     }
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "bugs": {
+    "url": "https://github.com/chaimPaneth/react-native-zoom-bridge/issues"
   },
-  "version": "1.0.2"
+  "homepage": "https://github.com/chaimPaneth/react-native-zoom-bridge#readme"
 }
