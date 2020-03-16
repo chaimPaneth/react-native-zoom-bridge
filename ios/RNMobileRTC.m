@@ -31,7 +31,12 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(initialize:(NSString *)key secret:(NSString *)secret domain:(NSString *) domain resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-    [[MobileRTC sharedRTC] setMobileRTCDomain:domain];
+    MobileRTCSDKInitContext *context = [[MobileRTCSDKInitContext alloc] init];
+    context.domain = domain;
+    context.enableLog = YES;
+    context.locale = MobileRTC_ZoomLocale_Default;
+    [[MobileRTC sharedRTC] initialize:context];
+    
     clientKey = key;
     clientSecret = secret;
     _initResolver = resolve;

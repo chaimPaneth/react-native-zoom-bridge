@@ -22,4 +22,6 @@ Pod::Spec.new do |s|
 
   s.frameworks = 'VideoToolbox', "ReplayKit", "CoreBluetooth"
   s.vendored_frameworks = "lib/MobileRTC.framework", "lib/MobileRTCScreenShare.framework"
+  
+  s.resource_bundles = {"MobileRTCResources": "lib/MobileRTCResources.bundle"}
 end
