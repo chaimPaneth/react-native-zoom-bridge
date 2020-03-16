@@ -1,0 +1,36 @@
+{
+  "name": "react-native-zoom-bridge",
+  "version": "1.0.2",
+  "description": "Zoom.us SDK bridge for React Native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaimPaneth/react-native-zoom-bridge.git"
+  },
+  "keywords": [
+    "react-native",
+    "Zoom MobileRTC SDK",
+    "video calls"
+  ],
+  "author": "chaimPaneth <chaim@chaimpaneth.com> (chaimpaneth.com",
+ "license": "MIT",
+  "peerDependencies": {
+    "react": "~15.4.0-rc.4",
+    "react-native": "^0.40.0"
+  },
+  "dependencies": {
+    "xcode": "^1.0.0"
+  },
+  "rnpm": {
+    "commands": {
+      "postlink": "node node_modules/react-native-zoom-sdk/scripts/postlink"
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/chaimPaneth/react-native-zoom-bridge/issues"
+  },
+  "homepage": "https://github.com/chaimPaneth/react-native-zoom-bridge#readme"
+}
