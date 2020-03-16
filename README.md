@@ -3,14 +3,20 @@
 
 ## Getting started
 
-Before you start, you should add Zoom SDK by downloading iOS and Android SDK to your project
-place **iOS SDK** in `ios/lib/` directory of your project.
-
-After that install the package with:
+Install the package with:
 
 `$ npm install react-native-zoom-bridge --save`
 
+After installation:
+# ios
+This library ships with the zoom sdk made for production check out this https://marketplace.zoom.us/docs/sdk/native-sdks/iOS/getting-started/integration and this https://stackoverflow.com/questions/30547283/submit-to-app-store-issues-unsupported-architecture-x86.
+Before you start on development, you should add Development Zoom SDK by downloading the sdk and replace **iOS SDK** in `lib/` directory of this project.
+
 ### Mostly automatic installation
+
+On react-native version 60+ just `cd ios/` and `pod install`
+
+for lower react-native version
 
 Run the `link` command. It will execute other SDK config to your app.
 
@@ -22,7 +28,7 @@ Run the `link` command. It will execute other SDK config to your app.
 #### iOS
 
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-zoom-sdk` and add `RNMobileRTC.xcodeproj`
+2. Go to `node_modules` ➜ `react-native-zoom-bridge` and add `RNMobileRTC.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libRNMobileRTC.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4. Run your project (`Cmd+R`)
 
