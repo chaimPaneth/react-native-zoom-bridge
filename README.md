@@ -19,7 +19,7 @@ iOS: `node_modules/react-native-zoom-bridge/ios/libs`
 
 Android: `node_modules/react-native-zoom-bridge/android/libs`
 
-For `iOS` when building for development make sure to put in the development sdk otherwise you will get a build error see number 7. below
+For `iOS` when building for development make sure to put in the development sdk otherwise you will get a build error see number 8. below
 
 ### Mostly automatic installation
 
@@ -60,12 +60,21 @@ So the above solution seems to be the best for now.
 
 #### Extra steps for iOS
 
+### Important
+
+Steps 2 to 5 are only needed for react-native versions lower then 60
+
+Steps 1, 6 - 8 are required for all react-native versions.
+
 1. In XCode, in your main project go to `General` tab, expand `Linked Frameworks and Libraries` and add the following libraries:
 * `libsqlite3.tbd`
 * `libc++.tbd`
 * `libz.1.2.5.tbd`
+* `CoreBluetooth`
+* `VideoToolbox`
+* `ReplayKit`
 
-1. In XCode, in your main project go to `General` tab, expand `Linked Frameworks and Libraries` and add `MobileRTC.framework`:
+2. In XCode, in your main project go to `General` tab, expand `Linked Frameworks and Libraries` and add `MobileRTC.framework`:
 * choose `Add other...`
 * navigate to `../node_modules/react-native-zoom-bridge/ios/libs`
 * choose `MobileRTC.framework`
@@ -80,16 +89,18 @@ So the above solution seems to be the best for now.
 Note: if you do not have `Copy Bundle Resources` you can add it by clicking on top-left `+` sign
 
 5. In XCode, in your main project go to `Build Settings` tab:
-* search for `Enable Bitcode` and make sure it is set to `NO`
 * search for `Framework Search Paths` and add `$(SRCROOT)/../node_modules/react-native-zoom-bridge/ios/libs` with `non-recursive`
 
-6. In XCode, in your main project go to `Info` tab and add the following keys with appropriate description:
+6. In XCode, in your main project go to `Build Settings` tab:
+* search for `Enable Bitcode` and make sure it is set to `NO`
+
+7. In XCode, in your main project go to `Info` tab and add the following keys with appropriate description:
 * `NSCameraUsageDescription`
 * `NSMicrophoneUsageDescription`
 * `NSPhotoLibraryUsageDescription`
 * `NSBluetoothPeripheralUsageDescription`
 
-7. Because this package includes Zoom SDK that works for both simulator and real device, when releasing to app store you may encounter problem with unsupported architecure. Please follow this answer to add script in `Build Phases` that filters out unsupported architectures: https://stackoverflow.com/questions/30547283/submit-to-app-store-issues-unsupported-architecture-x86. You may want to modify the script to be more specific, i.e. replace `'*.framework'` with `'MobileRTC.framework'`.
+8. Because this package includes Zoom SDK that works for both simulator and real device, when releasing to app store you may encounter problem with unsupported architecure. Please follow this answer to add script in `Build Phases` that filters out unsupported architectures: https://stackoverflow.com/questions/30547283/submit-to-app-store-issues-unsupported-architecture-x86. You may want to modify the script to be more specific, i.e. replace `'*.framework'` with `'MobileRTC.framework'`.
 
 ### Manual installation
 
