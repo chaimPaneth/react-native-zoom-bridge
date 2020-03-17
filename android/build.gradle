@@ -2,10 +2,14 @@
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.3.1'
     }
 }
 
@@ -26,13 +30,17 @@ android {
     }
 }
 
-repositories {
-    mavenCentral()
+allprojects {
+    repositories {
+        flatDir {
+            dirs "$rootDir/../react-native-zoom-bridge/android/libs"
+        }
+    }
 }
 
+
 dependencies {
-    implementation 'com.facebook.react:react-native:+'
-    implementation project(':zoomsdk')
-    implementation project(':zoomcommonlib')
+    implementation 'com.facebook.react:react-native:+' // From node_modules
+    implementation 'us.zoom.sdk:commonlib@aar'
+    implementation 'us.zoom.sdk:mobilertc@aar'
 }
-  
