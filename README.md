@@ -11,6 +11,16 @@ Pull requests are welcome.
 
 `$ npm install react-native-zoom-bridge`
 
+## Important
+
+Go to zoom.us and download the `sdk` for iOS and `arr` files for android and place them in their platform respective locations.
+
+iOS: `node_modules/react-native-zoom-bridge/ios/libs`
+
+Android: `node_modules/react-native-zoom-bridge/android/libs`
+
+For `iOS` when building for development make sure to put in the development sdk otherwise you will get a build error see number 7. below
+
 ### Mostly automatic installation
 
 On react-native versions 60+ for *ios* just `cd ios/` and `pod install`
@@ -79,7 +89,7 @@ Note: if you do not have `Copy Bundle Resources` you can add it by clicking on t
 * `NSPhotoLibraryUsageDescription`
 * `NSBluetoothPeripheralUsageDescription`
 
-6. Because this package includes Zoom SDK that works for both simulator and real device, when releasing to app store you may encounter problem with unsupported architecure. Please follow this answer to add script in `Build Phases` that filters out unsupported architectures: https://stackoverflow.com/questions/30547283/submit-to-app-store-issues-unsupported-architecture-x86. You may want to modify the script to be more specific, i.e. replace `'*.framework'` with `'MobileRTC.framework'`.
+7. Because this package includes Zoom SDK that works for both simulator and real device, when releasing to app store you may encounter problem with unsupported architecure. Please follow this answer to add script in `Build Phases` that filters out unsupported architectures: https://stackoverflow.com/questions/30547283/submit-to-app-store-issues-unsupported-architecture-x86. You may want to modify the script to be more specific, i.e. replace `'*.framework'` with `'MobileRTC.framework'`.
 
 ### Manual installation
 
