@@ -5,7 +5,7 @@ module.exports = {
     platforms: {
       ios: { podspecPath: path.join(__dirname, "RNZoomUs.podspec") },
       android: {
-        packageImportPath: "import com.appgolaz.reactnative.RNZoomUsPackage;",
+        packageImportPath: "import com.appgoalz.reactnative.RNZoomUsPackage;",
         packageInstance: "new RNZoomUsPackage()"
       }
     }
