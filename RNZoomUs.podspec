@@ -19,10 +19,4 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.dependency "React"
-
-  # s.library = "sqlite3", "z.1.2.5", "c++"
-  # s.frameworks = 'VideoToolbox', "ReplayKit", "CoreBluetooth"
-  s.vendored_frameworks = "ios/libs/MobileRTC.framework", "ios/libs/MobileRTCScreenShare.framework"
-
-  s.resource_bundles = {"MobileRTCResources": "ios/libs/MobileRTCResources.bundle"}
 end
