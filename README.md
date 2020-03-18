@@ -87,7 +87,7 @@ So the above solution seems to be the best for now.
 * navigate to `../node_modules/react-native-zoom-bridge/ios/libs`
 * choose `MobileRTC.framework`
 
-3. In XCode, in your main project go to `General` tab, expand `Embedded Binaries` and add `MobileRTC.framework` from the list - should be at `Frameworks`.
+3. In XCode, in your main project go to `General` tab, expand `Embedded Binaries` and add `MobileRTC.framework` from the list - should be at `Frameworks`. In *Xcode 11* choose `embed and sign`.
 
 4. In XCode, in your main project go to `Build Phases` tab, expand `Copy Bundle Resources` and add `MobileRTCResources.bundle`:
 * choose `Add other...`
