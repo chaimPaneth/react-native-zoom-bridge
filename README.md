@@ -25,7 +25,7 @@ You can download the development sdk from here https://github.com/zoom/zoom-sdk-
 Check out the description on Zoom's github page https://github.com/zoom/zoom-sdk-ios.
 
 ### Android
-Go to zoom.us and download the [arr files for android](https://marketplace.zoom.us/docs/sdk/native-sdks/android/getting-started/install-sdk#1-download-the-zoom-sdk) and take out the arr files from `/mobilertc-android-studio/mobilertc` && `/mobilertc-android-studio/commonlib`
+Go to zoom.us and download the [aar files for android](https://marketplace.zoom.us/docs/sdk/native-sdks/android/getting-started/install-sdk#1-download-the-zoom-sdk) and take out the arr files from `/mobilertc-android-studio/mobilertc` && `/mobilertc-android-studio/commonlib`
 
 Place them in their platform respective locations, (Create the `libs` folder).
 
