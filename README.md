@@ -18,7 +18,7 @@ Go to zoom.us and download the [SDK for iOS](https://marketplace.zoom.us/docs/sd
 
 #### Note
 
-There is two SDK's provided by zoom, 1 for development and one for production, check out this https://marketplace.zoom.us/docs/sdk/native-sdks/iOS/getting-started/integration#5-deployment and make sure you have the correct SDK for your build.
+There is two SDK's provided by zoom, 1 for development and one for production, check out this https://marketplace.zoom.us/docs/sdk/native-sdks/iOS/getting-started/integration#5-deployment and make sure you have the correct SDK for your build. You can download the development sdk from here https://github.com/zoom/zoom-sdk-ios/releases/download/v4.6.15084.0206/ios-mobilertc-all-4.6.15084.0206-n.zip on the latest releases page https://github.com/zoom/zoom-sdk-ios/releases. Check out the description on Zoom's github page https://github.com/zoom/zoom-sdk-ios.
 
 ### Android
 Go to zoom.us and download the [arr files for android](https://marketplace.zoom.us/docs/sdk/native-sdks/android/getting-started/install-sdk#1-download-the-zoom-sdk) and take out the arr files from `/mobilertc-android-studio/mobilertc` && `/mobilertc-android-studio/commonlib`
