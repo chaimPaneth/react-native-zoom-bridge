@@ -1,6 +1,6 @@
 {
   "name": "react-native-zoom-bridge",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "React-native bridge for ZoomUs SDK",
   "main": "index.js",
   "scripts": {
