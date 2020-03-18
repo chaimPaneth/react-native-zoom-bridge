@@ -13,13 +13,23 @@ Pull requests are welcome.
 
 ## Important
 
-Go to zoom.us and download the `sdk` for iOS and `arr` files for android and place them in their platform respective locations.
+### iOS
+Go to zoom.us and download the [SDK for iOS](https://marketplace.zoom.us/docs/sdk/native-sdks/iOS/getting-started/install-sdk#install-the-zoom-sdk)
+
+#### Note
+
+There is two SDK's provided by zoom, 1 for development and one for production, check out this https://marketplace.zoom.us/docs/sdk/native-sdks/iOS/getting-started/integration and make sure you have the correct SDK for your build.
+
+### Android
+Go to zoom.us and download the [arr files for android](Go to zoom.us and download the [SDK for iOS](https://marketplace.zoom.us/docs/sdk/native-sdks/iOS/getting-started/install-sdk#install-the-zoom-sdk))
+
+Place them in their platform respective locations, (Create the `libs` folder).
 
 iOS: `node_modules/react-native-zoom-bridge/ios/libs`
 
 Android: `node_modules/react-native-zoom-bridge/android/libs`
 
-For `iOS` when building for development make sure to put in the development sdk otherwise you will get a build error see number 8. below
+For `iOS` when building for development make sure to put in the development sdk otherwise you will get a build error see number [8.](#8) below
 
 ### Mostly automatic installation
 
@@ -96,7 +106,9 @@ Note: if you do not have `Copy Bundle Resources` you can add it by clicking on t
 
 8. Because this package includes Zoom SDK that works for both simulator and real device, when releasing to app store you may encounter problem with unsupported architecure. Please follow this answer to add script in `Build Phases` that filters out unsupported architectures: https://stackoverflow.com/questions/30547283/submit-to-app-store-issues-unsupported-architecture-x86. You may want to modify the script to be more specific, i.e. replace `'*.framework'` with `'MobileRTC.framework'`.
   
-9. You might have to fix the imports of the headers in the sdk e.g. from `<MobileRCT/MobileRCT.h>` to   `<MobileRCT.h>`
+## Important
+
+9. You might have to fix the imports of the headers in the SDK e.g. from `<MobileRCT/MobileRCT.h>` to `<MobileRCT.h>` from `<MobileRCT/MobileRCTConstants.h>` to `<MobileRCTConstants.h>`, if you get `'MobileRCT/MobileRCTConstants.h' not found` error then you have to rename the headers as follows throughout the whole SDK.
 
 ### Manual installation
 
