@@ -21,7 +21,7 @@ Go to zoom.us and download the [SDK for iOS](https://marketplace.zoom.us/docs/sd
 There is two SDK's provided by zoom, 1 for development and one for production, check out this https://marketplace.zoom.us/docs/sdk/native-sdks/iOS/getting-started/integration and make sure you have the correct SDK for your build.
 
 ### Android
-Go to zoom.us and download the [arr files for android](Go to zoom.us and download the [SDK for iOS](https://marketplace.zoom.us/docs/sdk/native-sdks/iOS/getting-started/install-sdk#install-the-zoom-sdk))
+Go to zoom.us and download the [arr files for android](https://marketplace.zoom.us/docs/sdk/native-sdks/android/getting-started/install-sdk) and take out the arr files from `/mobilertc-android-studio`
 
 Place them in their platform respective locations, (Create the `libs` folder).
 
