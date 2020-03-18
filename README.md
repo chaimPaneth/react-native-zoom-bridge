@@ -9,9 +9,9 @@ Pull requests are welcome.
 
 ## Getting started
 
-`$ npm install react-native-zoom-bridge`
+### Follow each step in the following order.
 
-## Important
+`$ npm install react-native-zoom-bridge --save`
 
 ### iOS
 Go to zoom.us and download the [SDK for iOS](https://marketplace.zoom.us/docs/sdk/native-sdks/android/getting-started/install-sdk#1-download-the-zoom-sdk)
@@ -26,6 +26,8 @@ Check out the description on Zoom's github page https://github.com/zoom/zoom-sdk
 
 ### Android
 Go to zoom.us and download the [aar files for android](https://marketplace.zoom.us/docs/sdk/native-sdks/android/getting-started/install-sdk#1-download-the-zoom-sdk) and take out the aar files from `/mobilertc-android-studio/mobilertc` && `/mobilertc-android-studio/commonlib`
+
+### Once you downloaded the SDK's
 
 Place them in their platform respective locations, (Create the `libs` folder).
 
