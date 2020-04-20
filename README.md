@@ -40,7 +40,7 @@ For `iOS` when building for development make sure to put in the development sdk 
 
 ### Mostly automatic installation
 
-On react-native versions 60+ for *ios* just `cd ios/` and `pod install`
+On react-native versions 60+ for *ios* just `cd ios/` and `pod install` - make sure you already have the right SDK in the `libs` folder before running `pod install`
 
 for lower react-native versions run `$ react-native link react-native-zoom-bridge`
 
