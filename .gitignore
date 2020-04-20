@@ -28,6 +28,8 @@ build/
 .gradle
 local.properties
 *.iml
+android/.project
+android/.settings/
 
 # node.js
 #
@@ -57,5 +59,3 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
-
-.history

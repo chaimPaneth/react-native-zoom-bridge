@@ -1,33 +1,33 @@
 
 # react-native-zoom-bridge
 
-This is a minimum bridge of https://github.com/zoom/zoom-sdk-android and https://github.com/zoom/zoom-sdk-ios
+<img width="200" alt="sample" src="images/Sample.png">
 
-Tested on XCode 9.4.1 and node 10.14.1.
-
-Pull requests are welcome.
+React-native bridge for ZoomUs video conference calls [android](https://github.com/zoom/zoom-sdk-android) & [iOS](https://github.com/zoom/zoom-sdk-ios) SDK's
 
 ## Getting started
 
-### Follow each step in the following order.
-
 `$ npm install react-native-zoom-bridge --save`
+
+## Prerequisite
 
 ### iOS
 Go to zoom.us and download the [SDK for iOS](https://marketplace.zoom.us/docs/sdk/native-sdks/android/getting-started/install-sdk#1-download-the-zoom-sdk)
 
-#### Note
+## Important Note
 
-There is two SDK's provided by zoom, 1 for development and one for production, check out this https://marketplace.zoom.us/docs/sdk/native-sdks/iOS/getting-started/integration#5-deployment and make sure you have the correct SDK for your build. 
+There is two SDK's provided by zoom for iOS, development & production sdk's - **you will get a build fail if you run production sdk on a simulator and a compilation error when archiving the app for release if using the development sdk!**
+
+Check out this https://marketplace.zoom.us/docs/sdk/native-sdks/iOS/getting-started/integration#5-deployment and make sure you have the correct SDK for your build. 
 
 You can download the development sdk from here https://github.com/zoom/zoom-sdk-ios/releases/download/v4.6.15084.0206/ios-mobilertc-all-4.6.15084.0206-n.zip on the latest releases page https://github.com/zoom/zoom-sdk-ios/releases. 
 
 Check out the description on Zoom's github page https://github.com/zoom/zoom-sdk-ios.
 
+The issue when releasing to app store with unsupported architecture is because the development SDK works for both simulator and real device. You can work around this issue by following this answer to add script in `Build Phases` that filters out unsupported architectures: https://stackoverflow.com/questions/30547283/submit-to-app-store-issues-unsupported-architecture-x86. You may want to modify the script to be more specific, i.e. replace `'*.framework'` with `'MobileRTC.framework'`
+
 ### Android
 Go to zoom.us and download the [aar files for android](https://marketplace.zoom.us/docs/sdk/native-sdks/android/getting-started/install-sdk#1-download-the-zoom-sdk) and take out the aar files from `/mobilertc-android-studio/mobilertc` && `/mobilertc-android-studio/commonlib`
-
-### Once you downloaded the SDK's
 
 Place them in their platform respective locations, (Create the `libs` folder).
 
@@ -70,67 +70,56 @@ android {
 }
 ```
 
-Note: In `android/app/build.gradle` I tried to set up `compile project(':react-native-zoom-bridge')` with `transitive=false`
-and it compiled well, but the app then crashes after running with initialize/meeting listener.
-So the above solution seems to be the best for now.
-
 #### Extra steps for iOS
 
-1. In XCode, in your main project go to `General` tab, expand `Linked Frameworks and Libraries` and add the following libraries:
-* `libsqlite3.tbd`
-* `libc++.tbd`
-* `libz.1.2.5.tbd`
-* `CoreBluetooth`
-* `VideoToolbox`
-* `ReplayKit`
-
-2. In XCode, in your main project go to `General` tab, expand `Linked Frameworks and Libraries` and add `MobileRTC.framework`:
-* choose `Add other...`
-* navigate to `../node_modules/react-native-zoom-bridge/ios/libs`
-* choose `MobileRTC.framework`
-
-3. In XCode, in your main project go to `General` tab, expand `Embedded Binaries` and add `MobileRTC.framework` from the list - should be at `Frameworks`. In *Xcode 11* choose `embed and sign`.
-
-4. In XCode, in your main project go to `Build Phases` tab, expand `Copy Bundle Resources` and add `MobileRTCResources.bundle`:
-* choose `Add other...`
-* navigate to `../node_modules/react-native-zoom-bridge/ios/libs`
-* choose `MobileRTCResources.bundle`
-* choose `Create folder references` and uncheck `Copy files if needed`
-Note: if you do not have `Copy Bundle Resources` you can add it by clicking on top-left `+` sign
-
-5. In XCode, in your main project go to `Build Settings` tab:
-* search for `Framework Search Paths` and add `$(SRCROOT)/../node_modules/react-native-zoom-bridge/ios/libs` with `non-recursive`
-
-6. In XCode, in your main project go to `Build Settings` tab:
+1. In XCode, in your main project go to `Build Settings` tab:
 * search for `Enable Bitcode` and make sure it is set to `NO`
 
-7. In XCode, in your main project go to `Info` tab and add the following keys with appropriate description:
+2. In XCode, in your main project go to `Info` tab and in the following keys enter the appropriate description:
 * `NSCameraUsageDescription`
 * `NSMicrophoneUsageDescription`
 * `NSPhotoLibraryUsageDescription`
 * `NSBluetoothPeripheralUsageDescription`
-
-8. Because this package includes Zoom SDK that works for both simulator and real device, when releasing to app store you may encounter problem with unsupported architecure. Please follow this answer to add script in `Build Phases` that filters out unsupported architectures: https://stackoverflow.com/questions/30547283/submit-to-app-store-issues-unsupported-architecture-x86. You may want to modify the script to be more specific, i.e. replace `'*.framework'` with `'MobileRTC.framework'`.
   
 ## Important
 
-9. You might have to fix the imports of the headers in the SDK e.g. from `<MobileRCT/MobileRCT.h>` to `<MobileRCT.h>` from `<MobileRCT/MobileRCTConstants.h>` to `<MobileRCTConstants.h>`, if you get `'MobileRCT/MobileRCTConstants.h' not found` error then you have to rename the headers as follows throughout the whole SDK.
+You might have to fix the imports of the headers in the SDK e.g. from `<MobileRCT/MobileRCT.h>` to `<MobileRCT.h>` from `<MobileRCT/MobileRCTConstants.h>` to `<MobileRCTConstants.h>`, if you get **`'MobileRCT/MobileRCTConstants.h' not found`** error then you have to rename the headers as mentioned throughout the whole SDK.
 
 ### Manual installation
 
 #### iOS
 
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-zoom-bridge` and add `RNZoomUs.xcodeproj`
-3. In XCode, in the project navigator, select your project. Add `libRNZoomUs.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
+2. Go to `node_modules` ➜ `react-native-zoom-bridge` and add `RNZoomBridge.xcodeproj`
+3. In XCode, in the project navigator, select your project. Add `libRNZoomBridge.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4. Run your project (`Cmd+R`)<
-5. Follow [Mostly automatic installation-> Extra steps for iOS](#extra-steps-for-ios)
+5. In XCode, in your main project go to `General` tab, expand `Linked Frameworks and Libraries` and add the following libraries:
+   * `libsqlite3.tbd`
+   * `libc++.tbd`
+   * `libz.1.2.5.tbd`
+   * `CoreBluetooth`
+   * `VideoToolbox`
+   * `ReplayKit`
+6. In XCode, in your main project go to `General` tab, expand `Linked Frameworks and Libraries` and add `MobileRTC.framework`:
+   * choose `Add other...`
+   * navigate to `../node_modules/react-native-zoom-bridge/ios/libs`
+   * choose `MobileRTC.framework`
+7. In XCode, in your main project go to `General` tab, expand `Embedded Binaries` and add `MobileRTC.framework` from the list - should be at `Frameworks`.
+8. In XCode, in your main project go to `Build Phases` tab, expand `Copy Bundle Resources` and add `MobileRTCResources.bundle`:
+   * choose `Add other...`
+   * navigate to `../node_modules/react-native-zoom-bridge/ios/libs`
+   * choose `MobileRTCResources.bundle`
+   * choose `Create folder references` and uncheck `Copy files if needed`
+Note: if you do not have `Copy Bundle Resources` you can add it by clicking on top-left `+` sign
+9. In XCode, in your main project go to `Build Settings` tab:
+   * search for `Framework Search Paths` and add `$(SRCROOT)/../node_modules/react-native-zoom-bridge/ios/libs` with `non-recursive`
+10. Follow [Mostly automatic installation-> Extra steps for iOS](#extra-steps-for-ios)
 
 #### Android
 
 1. Open up `android/app/src/main/java/[...]/MainActivity.java`
-  - Add `import com.appgolaz.reactnative.RNZoomUsPackage;` to the imports at the top of the file
-  - Add `new RNZoomUsPackage()` to the list returned by the `getPackages()` method
+  - Add `import com.appgolaz.reactnative.RNZoomBridgePackage;` to the imports at the top of the file
+  - Add `new RNZoomBridgePackage()` to the list returned by the `getPackages()` method
 2. Append the following lines to `android/settings.gradle`:
   	```
   	include ':react-native-zoom-bridge'
@@ -138,23 +127,23 @@ Note: if you do not have `Copy Bundle Resources` you can add it by clicking on t
   	```
 3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
   	```
-      compile project(':react-native-zoom-bridge')
+      implementation project(':react-native-zoom-bridge')
   	```
 4. Follow [Mostly automatic installation-> Extra steps for Android](#extra-steps-for-android)
 
-
 ## Usage
-```javascript
-import ZoomUs from 'react-native-zoom-bridge';
 
-await ZoomUs.initialize(
+```javascript
+import ZoomBride from 'react-native-zoom-bridge';
+
+await ZoomBride.initialize(
   config.zoom.appKey,
   config.zoom.appSecret,
   config.zoom.domain
 );
 
 // Start Meeting
-await ZoomUs.startMeeting(
+await ZoomBride.startMeeting(
   displayName,
   meetingNo,
   userId, // can be 'null'?
@@ -167,14 +156,8 @@ await ZoomUs.startMeeting(
 );
 
 // OR Join Meeting
-await ZoomUs.joinMeeting(
+await ZoomBride.joinMeeting(
   displayName,
   meetingNo
 );
-```
-
-## Example
-Go inside `demo` folder and run:
-```bash
-yarn & yarn start
 ```

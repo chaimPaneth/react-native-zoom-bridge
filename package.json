@@ -1,7 +1,7 @@
 {
   "name": "react-native-zoom-bridge",
-  "version": "1.0.9",
-  "description": "React-native bridge for ZoomUs SDK",
+  "version": "1.0.10",
+  "description": "React-native bridge for ZoomUs video conference calls SDK",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

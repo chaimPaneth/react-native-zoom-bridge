@@ -1,0 +1,7 @@
+/example
+/images
+/android/build
+/android/.settings
+/android/.project
+*.iml
+yarn-error.log

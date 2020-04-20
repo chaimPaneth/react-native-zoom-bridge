@@ -3,10 +3,10 @@ const path = require('path');
 module.exports = {
   dependency: {
     platforms: {
-      ios: { podspecPath: path.join(__dirname, "RNZoomUs.podspec") },
+      ios: { podspecPath: path.join(__dirname, "RNZoomBridge.podspec") },
       android: {
-        packageImportPath: "import com.appgoalz.reactnative.RNZoomUsPackage;",
-        packageInstance: "new RNZoomUsPackage()"
+        packageImportPath: "import com.appgoalz.reactnative.RNZoomBridgePackage;",
+        packageInstance: "new RNZoomBridgePackage()"
       }
     }
   }

@@ -1,6 +1,6 @@
 
 import { NativeModules } from 'react-native';
 
-const { RNZoomUs } = NativeModules;
+const { RNZoomBridge } = NativeModules;
 
-export default RNZoomUs;
+export default RNZoomBridge;
