@@ -15,6 +15,7 @@ React-native bridge for ZoomUs video conference calls [android](https://github.c
 Go to zoom.us and download the [SDK for iOS](https://marketplace.zoom.us/docs/sdk/native-sdks/android/getting-started/install-sdk#1-download-the-zoom-sdk)
 
 ## Important Note
+##### SDK-type
 
 There is two SDK's provided by zoom for iOS, development & production sdk's - **you will get a build fail if you run production sdk on a simulator and a compilation error when archiving the app for release if using the development sdk!**
 
@@ -29,13 +30,13 @@ The issue when releasing to app store with unsupported architecture is because t
 ### Android
 Go to zoom.us and download the [aar files for android](https://marketplace.zoom.us/docs/sdk/native-sdks/android/getting-started/install-sdk#1-download-the-zoom-sdk) and take out the aar files from `/mobilertc-android-studio/mobilertc` && `/mobilertc-android-studio/commonlib`
 
-Place them in their platform respective locations, (Create the `libs` folder).
+Place them in their platform respective locations as follows:
 
 iOS: `node_modules/react-native-zoom-bridge/ios/libs`
 
 Android: `node_modules/react-native-zoom-bridge/android/libs`
 
-For `iOS` when building for development make sure to put in the development sdk otherwise you will get a build error see number [8.](#8) below
+For `iOS` when building for development make sure to put in the development sdk otherwise you will get a build error see above [Important Note](#SDK-type).
 
 ### Mostly automatic installation
 
