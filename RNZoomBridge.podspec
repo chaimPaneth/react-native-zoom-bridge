@@ -23,9 +23,9 @@ Pod::Spec.new do |s|
   s.resources = "ios/libs/MobileRTC.framework", "ios/libs/MobileRTCScreenShare.framework", "ios/libs/MobileRTCResources.bundle"
   s.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '"$(SRCROOT)/../node_modules/react-native-zoom-bridge/ios/libs"' }
   s.info_plist = {
-    'NSCameraUsageDescription' => 'We need access to your camera so other meeting attendies can see you.',
-    'NSMicrophoneUsageDescription' => 'We need access to your microphone so other meeting attendies can hear you.',
-    'NSPhotoLibraryUsageDescription' => 'We need access to your photo library so you can share photos with other meeting attendies.',
-    'NSBluetoothPeripheralUsageDescription' => 'We need access to your bluetooth so you can participate meetings with your bluetooth device.'
+    'NSCameraUsageDescription' => 'For people to see you during meetings, we need access to your camera.',
+    'NSMicrophoneUsageDescription' => 'For people to hear you during meetings, we need access to your microphone.',
+    'NSPhotoLibraryUsageDescription' => 'For people to share, we need access to your photos',
+    'NSBluetoothPeripheralUsageDescription' => 'We will use your Bluetooth to access your Bluetooth headphones.'
   }
 end
