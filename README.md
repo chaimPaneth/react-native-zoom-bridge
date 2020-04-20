@@ -135,16 +135,16 @@ Note: if you do not have `Copy Bundle Resources` you can add it by clicking on t
 ## Usage
 
 ```javascript
-import ZoomBride from 'react-native-zoom-bridge';
+import ZoomBridge from 'react-native-zoom-bridge';
 
-await ZoomBride.initialize(
+await ZoomBridge.initialize(
   config.zoom.appKey,
   config.zoom.appSecret,
   config.zoom.domain
 );
 
 // Start Meeting
-await ZoomBride.startMeeting(
+await ZoomBridge.startMeeting(
   displayName,
   meetingNo,
   userId, // can be 'null'?
@@ -157,7 +157,7 @@ await ZoomBride.startMeeting(
 );
 
 // OR Join Meeting
-await ZoomBride.joinMeeting(
+await ZoomBridge.joinMeeting(
   displayName,
   meetingNo
 );
