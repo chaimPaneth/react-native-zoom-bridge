@@ -12,11 +12,33 @@ React-native bridge for ZoomUs video conference calls [android](https://github.c
 ## Pre-requisites
 
 ### iOS
-Go to zoom.us and download the [SDK for iOS](https://marketplace.zoom.us/docs/sdk/native-sdks/iOS/getting-started/install-sdk#install-the-zoom-sdk)
+
+<details><summary>Import iOS Development SDK</summary>
+
+run in project root
+
+`$ chmod +x ./node_modules/react-native-zoom-bridge/bin/import_dev_sdk.sh`
+
+`$ ./node_modules/react-native-zoom-bridge/bin/import_dev_sdk.sh`
+
+or download the development SDK manually from [here](https://github.com/zoom/zoom-sdk-ios/releases/download/v4.6.15084.0206/ios-mobilertc-all-4.6.15084.0206-n.zip) or from the latest releases page https://github.com/zoom/zoom-sdk-ios/releases and place all contents of *lib* folder in `node_modules/react-native-zoom-bridge/ios/libs`
+</details>
+
+<details><summary>Import iOS Production SDK</summary>
+
+run in project root
+
+`$ chmod +x ./node_modules/react-native-zoom-bridge/bin/import_prod_sdk.sh`
+
+`$ ./node_modules/react-native-zoom-bridge/bin/import_prod_sdk.sh`
+
+or download the production SDK manually from [here](https://marketplace.zoom.us/docs/sdk/native-sdks/iOS/getting-started/install-sdk#install-the-zoom-sdk) or from the latest releases page https://github.com/zoom/zoom-sdk-ios/releases and place all contents of *lib* folder in `node_modules/react-native-zoom-bridge/ios/libs`
+</details>
 
 ## Important Note
 ##### SDK-type
 
+<details><summary>Production vs Development SDK's</summary>
 There is two SDK's provided by zoom for iOS, development & production sdk's - **you will get a build fail if you run production sdk on a simulator and a compilation error when archiving the app for release if using the development sdk!**
 
 Check out this https://marketplace.zoom.us/docs/sdk/native-sdks/iOS/getting-started/integration#5-deployment and make sure you have the correct SDK for your build. 
@@ -26,21 +48,32 @@ You can download the development sdk from here https://github.com/zoom/zoom-sdk-
 Check out the description on Zoom's github page https://github.com/zoom/zoom-sdk-ios.
 
 The issue when releasing to app store with unsupported architecture is because the development SDK works for both simulator and real device. You can work around this issue by following this answer to add script in `Build Phases` that filters out unsupported architectures: https://stackoverflow.com/questions/30547283/submit-to-app-store-issues-unsupported-architecture-x86. You may want to modify the script to be more specific, i.e. replace `'*.framework'` with `'MobileRTC.framework'`
+</details>
 
 ### Android
-Go to zoom.us and download the [aar files for android](https://marketplace.zoom.us/docs/sdk/native-sdks/android/getting-started/install-sdk#1-download-the-zoom-sdk) and take out the aar files from `/mobilertc-android-studio/mobilertc` && `/mobilertc-android-studio/commonlib`
 
-## Once you have your SDK and aar's
+<details><summary>Import Android aar's</summary>
 
-Place them in their platform respective locations as follows:
+run in project root
+
+`$ chmod +x ./node_modules/react-native-zoom-bridge/bin/import_aars.sh`
+
+`$ ./node_modules/react-native-zoom-bridge/bin/import_aars.sh`
+
+or download the aar's manually from [here](https://marketplace.zoom.us/docs/sdk/native-sdks/android/getting-started/install-sdk#1-download-the-zoom-sdk) and take out the aar files from `/mobilertc-android-studio/mobilertc` && `/mobilertc-android-studio/commonlib` and place both (commonlib.aar && mobilertc.aar) in `node_modules/react-native-zoom-bridge/ios/libs`
+</details>
+
+## Once you have your SDK and aar's imported
+
+Make sure they appear in their platform respective locations as follows:
 
 iOS: `node_modules/react-native-zoom-bridge/ios/libs`
 
 Android: `node_modules/react-native-zoom-bridge/android/libs`
 
-For `iOS` when building for development make sure to put in the development sdk otherwise you will get a build error see above [Important Note](#SDK-type).
+you can continue to linking.
 
-### Mostly automatic installation
+### Mostly automatic linking
 
 On react-native versions 60+ for **ios** just `cd ios/` and `pod install` - make sure you already have the right SDK in the `libs` folder before running `pod install`
 
@@ -86,7 +119,8 @@ android {
   
 ## Important
 
-You might have to fix the imports of the headers in the SDK e.g. from `<MobileRCT/MobileRCT.h>` to `<MobileRCT.h>` from `<MobileRCT/MobileRCTConstants.h>` to `<MobileRCTConstants.h>`, if you get **`'MobileRCT/MobileRCTConstants.h' not found`** error then you have to rename the headers as mentioned throughout the whole SDK.
+If you get **`'MobileRCT/MobileRCTConstants.h' not found`** error then you have to rename the headers as follows throughout the whole SDK.
+Change the imports of the headers in the SDK e.g. from `<MobileRCT/MobileRCT.h>` to `<MobileRCT.h>` from `<MobileRCT/MobileRCTConstants.h>` to `<MobileRCTConstants.h>` and so on, basically you need to remove the leading `MobileRCT/` throughout the project.
 
 ### Manual installation
 
@@ -116,7 +150,7 @@ You might have to fix the imports of the headers in the SDK e.g. from `<MobileRC
 Note: if you do not have `Copy Bundle Resources` you can add it by clicking on top-left `+` sign
 9. In XCode, in your main project go to `Build Settings` tab:
    * search for `Framework Search Paths` and add `$(SRCROOT)/../node_modules/react-native-zoom-bridge/ios/libs` with `non-recursive`
-10. Follow [Mostly automatic installation-> Extra steps for iOS](#extra-steps-for-ios)
+10. Follow [Extra steps for iOS](#extra-steps-for-ios)
 
 #### Android
 
@@ -132,7 +166,7 @@ Note: if you do not have `Copy Bundle Resources` you can add it by clicking on t
   	```
       implementation project(':react-native-zoom-bridge')
   	```
-4. Follow [Mostly automatic installation-> Extra steps for Android](#extra-steps-for-android)
+4. Follow [Extra steps for Android](#extra-steps-for-android)
 
 ## Usage
 
