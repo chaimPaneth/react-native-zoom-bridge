@@ -30,6 +30,8 @@ The issue when releasing to app store with unsupported architecture is because t
 ### Android
 Go to zoom.us and download the [aar files for android](https://marketplace.zoom.us/docs/sdk/native-sdks/android/getting-started/install-sdk#1-download-the-zoom-sdk) and take out the aar files from `/mobilertc-android-studio/mobilertc` && `/mobilertc-android-studio/commonlib`
 
+## Once you have your SDK and aar's
+
 Place them in their platform respective locations as follows:
 
 iOS: `node_modules/react-native-zoom-bridge/ios/libs`
