@@ -12,7 +12,7 @@ React-native bridge for ZoomUs video conference calls [android](https://github.c
 ## Pre-requisites
 
 ### iOS
-Go to zoom.us and download the [SDK for iOS](https://marketplace.zoom.us/docs/sdk/native-sdks/android/getting-started/install-sdk#1-download-the-zoom-sdk)
+Go to zoom.us and download the [SDK for iOS](https://marketplace.zoom.us/docs/sdk/native-sdks/iOS/getting-started/install-sdk#install-the-zoom-sdk)
 
 ## Important Note
 ##### SDK-type
