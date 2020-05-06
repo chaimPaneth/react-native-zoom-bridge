@@ -137,6 +137,21 @@ android {
 }
 ```
 
+In order to use the latest SDK from zoom.us currently v4.6.21666.0429 you will have to set your api level to 29 and use build tools 29+ and min sdk to 21.
+
+So make sure your settings are as follows:
+
+```
+ext {
+  buildToolsVersion = "29.0.3"
+  minSdkVersion = 21
+  compileSdkVersion = 29
+  targetSdkVersion = 29
+}
+```
+
+and that you have build tools 29 installed.
+
 #### Extra steps for iOS
 
 1. In XCode, in your main project go to `Build Settings` tab:
