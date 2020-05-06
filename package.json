@@ -1,6 +1,6 @@
 {
   "name": "react-native-zoom-bridge",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "React-native bridge for ZoomUs video conference calls SDK",
   "main": "index.js",
   "scripts": {

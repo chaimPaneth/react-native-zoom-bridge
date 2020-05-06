@@ -9,6 +9,37 @@ React-native bridge for ZoomUs video conference calls [android](https://github.c
 
 `$ npm install react-native-zoom-bridge --save`
 
+## Quick installation guide
+<details><summary>Shortcut</summary>
+Run
+
+`npm i --save react-native-zoom-bridge` 
+
+For iOS:
+
+`chmod +x ./node_modules/react-native-zoom-bridge/bin/import_dev_sdk.sh`
+
+`./node_modules/react-native-zoom-bridge/bin/import_dev_sdk.sh`
+
+`cd ios`
+
+`pod install`
+
+Follow [Extra steps for iOS](#extra-steps-for-ios)
+
+Afterwards you will have to rename the header imports removing the leading `MobileRTC/` from the imports.
+
+For Android:
+
+`chmod +x ./node_modules/react-native-zoom-bridge/bin/import_aars.sh`
+
+`./node_modules/react-native-zoom-bridge/bin/import_aars.sh`
+
+Follow [Extra steps for Android](#extra-steps-for-android)
+
+For a more detailed guide read on.
+</details>
+
 ## Pre-requisites
 
 ### iOS

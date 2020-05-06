@@ -190,6 +190,11 @@ public class RNZoomBridgeModule extends ReactContextBaseJavaModule implements Zo
     }
   }
 
+  @Override
+  public void onZoomAuthIdentityExpired() {
+    Log.d(TAG,"onZoomAuthIdentityExpired:");
+  }
+
   private void registerListener() {
     Log.i(TAG, "registerListener");
     ZoomSDK zoomSDK = ZoomSDK.getInstance();
