@@ -27,7 +27,7 @@ For iOS:
 
 Follow [Extra steps for iOS](#extra-steps-for-ios)
 
-Afterwards you will have to rename the header imports removing the leading `MobileRTC/` from the imports.
+**Afterwards you will have to rename the header imports in the whole SDK removing the leading `MobileRTC/` from the header imports. see [Incorrect header imports](#incorrect-header-imports)**
 
 For Android:
 
@@ -80,6 +80,8 @@ Check out the description on Zoom's github page https://github.com/zoom/zoom-sdk
 
 The issue when releasing to app store with unsupported architecture is because the development SDK works for both simulator and real device. You can work around this issue by following this answer to add script in `Build Phases` that filters out unsupported architectures: https://stackoverflow.com/questions/30547283/submit-to-app-store-issues-unsupported-architecture-x86. You may want to modify the script to be more specific, i.e. replace `'*.framework'` with `'MobileRTC.framework'`
 </details>
+
+**Afterwards you will have to rename the header imports in the whole SDK removing the leading `MobileRTC/` from the header imports. see [Incorrect header imports](#incorrect-header-imports)**
 
 ### Android
 
@@ -165,8 +167,12 @@ and that you have build tools 29 installed.
   
 ## Important
 
-If you get **`'MobileRCT/MobileRCTConstants.h' not found`** error then you have to rename the headers as follows throughout the whole SDK.
+#### Incorrect header imports
+
+If you get **`'MobileRCT/MobileRCTConstants.h' not found`** error or **`Duplicate interface definition for class 'MobileRTCSDKInitContext'`** etc, then you have to rename the headers as follows throughout the whole SDK.
 Change the imports of the headers in the SDK e.g. from `<MobileRCT/MobileRCT.h>` to `<MobileRCT.h>` from `<MobileRCT/MobileRCTConstants.h>` to `<MobileRCTConstants.h>` and so on, basically you need to remove the leading `MobileRCT/` throughout the project.
+
+You can find "MobileRCT/" and replace with nothing "" and recompile.
 
 ### Manual installation
 
