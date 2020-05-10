@@ -169,10 +169,10 @@ and that you have build tools 29 installed.
 
 #### Incorrect header imports
 
-If you get **`'MobileRCT/MobileRCTConstants.h' not found`** error or **`Duplicate interface definition for class 'MobileRTCSDKInitContext'`** etc, then you have to rename the headers as follows throughout the whole SDK.
-Change the imports of the headers in the SDK e.g. from `<MobileRCT/MobileRCT.h>` to `<MobileRCT.h>` from `<MobileRCT/MobileRCTConstants.h>` to `<MobileRCTConstants.h>` and so on, basically you need to remove the leading `MobileRCT/` throughout the project.
+If you get **`'MobileRTC/MobileRTCConstants.h' not found`** error or **`Duplicate interface definition for class 'MobileRTCSDKInitContext'`** etc, then you have to rename the headers as follows throughout the whole SDK.
+Change the imports of the headers in the SDK e.g. from `<MobileRTC/MobileRTC.h>` to `<MobileRTC.h>` from `<MobileRTC/MobileRTCConstants.h>` to `<MobileRTCConstants.h>` and so on, basically you need to remove the leading `MobileRTC/` throughout the project.
 
-You can find "MobileRCT/" and replace with nothing "" and recompile.
+You can find "MobileRTC/" and replace with nothing "" and recompile.
 
 ### Manual installation
 
