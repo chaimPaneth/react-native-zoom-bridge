@@ -251,7 +251,7 @@ await ZoomBridge.joinMeeting(
 );
 
 // OR Join Meeting with password
-await ZoomUs.joinMeetingWithPassword(
+await ZoomBridge.joinMeetingWithPassword(
   displayName,
   meetingNo,
   'Enter password here'
