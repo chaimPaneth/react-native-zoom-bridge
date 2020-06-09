@@ -249,4 +249,11 @@ await ZoomBridge.joinMeeting(
   displayName,
   meetingNo
 );
+
+// OR Join Meeting with password
+await ZoomUs.joinMeetingWithPassword(
+  displayName,
+  meetingNo,
+  'Enter password here'
+);
 ```
