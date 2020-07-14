@@ -3,7 +3,7 @@
 
 <img width="200" alt="sample" src="images/Sample.png">
 
-React-native bridge for ZoomUs video conference calls [android](https://github.com/zoom/zoom-sdk-android) & [iOS](https://github.com/zoom/zoom-sdk-ios) SDK's
+React-native bridge for ZoomUs video conference calls [android](https://github.com/zoom/zoom-sdk-android) & [iOS](https://github.com/zoom/zoom-sdk-ios) SDK's (as of Jul 14, 2020 version 4.6.21666.0428)
 
 ## Getting started
 
@@ -16,18 +16,23 @@ Run
 `npm i --save react-native-zoom-bridge` 
 
 For iOS:
+1. Import the SDK:
+   
+      *Development environment*
 
-`chmod +x ./node_modules/react-native-zoom-bridge/bin/import_dev_sdk.sh`
+      `chmod +x ./node_modules/react-native-zoom-bridge/bin/import_dev_sdk.sh`
 
-`./node_modules/react-native-zoom-bridge/bin/import_dev_sdk.sh`
+      `./node_modules/react-native-zoom-bridge/bin/import_dev_sdk.sh`
 
-`cd ios`
+      *Production environment*
 
-`pod install`
+      `chmod +x ./node_modules/react-native-zoom-bridge/bin/import_prod_sdk.sh`
+
+      `./node_modules/react-native-zoom-bridge/bin/import_prod_sdk.sh`
+2. `cd ios`
+3. `pod install`
 
 Follow [Extra steps for iOS](#extra-steps-for-ios)
-
-**Afterwards you will have to rename the header imports in the whole SDK removing the leading `MobileRTC/` from the header imports. see [Incorrect header imports](#incorrect-header-imports)**
 
 For Android:
 
@@ -53,6 +58,8 @@ run in project root
 `$ ./node_modules/react-native-zoom-bridge/bin/import_dev_sdk.sh`
 
 or download the development SDK manually from [here](https://github.com/zoom/zoom-sdk-ios/releases/download/v4.6.15084.0206/ios-mobilertc-all-4.6.15084.0206-n.zip) or from the latest releases page https://github.com/zoom/zoom-sdk-ios/releases and place all contents of *lib* folder in `node_modules/react-native-zoom-bridge/ios/libs`
+
+**When downloading the SDK manually you will have to rename the header imports in the whole SDK removing the leading `MobileRTC/` from the header imports. see [Incorrect header imports](#incorrect-header-imports)**
 </details>
 
 <details><summary>Import iOS Production SDK</summary>
@@ -64,6 +71,8 @@ run in project root
 `$ ./node_modules/react-native-zoom-bridge/bin/import_prod_sdk.sh`
 
 or download the production SDK manually from [here](https://marketplace.zoom.us/docs/sdk/native-sdks/iOS/getting-started/install-sdk#install-the-zoom-sdk) or from the latest releases page https://github.com/zoom/zoom-sdk-ios/releases and place all contents of *lib* folder in `node_modules/react-native-zoom-bridge/ios/libs`
+
+**When downloading the SDK manually you will have to rename the header imports in the whole SDK removing the leading `MobileRTC/` from the header imports. see [Incorrect header imports](#incorrect-header-imports)**
 </details>
 
 ## Important Note
@@ -81,7 +90,7 @@ Check out the description on Zoom's github page https://github.com/zoom/zoom-sdk
 The issue when releasing to app store with unsupported architecture is because the development SDK works for both simulator and real device. You can work around this issue by following this answer to add script in `Build Phases` that filters out unsupported architectures: https://stackoverflow.com/questions/30547283/submit-to-app-store-issues-unsupported-architecture-x86. You may want to modify the script to be more specific, i.e. replace `'*.framework'` with `'MobileRTC.framework'`
 </details>
 
-**Afterwards you will have to rename the header imports in the whole SDK removing the leading `MobileRTC/` from the header imports. see [Incorrect header imports](#incorrect-header-imports)**
+**When downloading the SDK manually you will have to rename the header imports in the whole SDK removing the leading `MobileRTC/` from the header imports. see [Incorrect header imports](#incorrect-header-imports)**
 
 ### Android
 
@@ -169,10 +178,12 @@ and that you have build tools 29 installed.
 
 #### Incorrect header imports
 
-If you get **`'MobileRTC/MobileRTCConstants.h' not found`** error or **`Duplicate interface definition for class 'MobileRTCSDKInitContext'`** etc, then you have to rename the headers as follows throughout the whole SDK.
+If you get **`'MobileRTCConstants.h' not found`** error or **`Duplicate interface definition for class 'MobileRTCSDKInitContext'`** etc, then you have to rename the headers as follows throughout the whole SDK.
 Change the imports of the headers in the SDK e.g. from `<MobileRTC/MobileRTC.h>` to `<MobileRTC.h>` from `<MobileRTC/MobileRTCConstants.h>` to `<MobileRTCConstants.h>` and so on, basically you need to remove the leading `MobileRTC/` throughout the project.
 
-You can find "MobileRTC/" and replace with nothing "" and recompile.
+You can make use of the find and replace function in XCode, find "`MobileRTC/`" and replace with nothing "" and recompile.
+
+You should only have to do this if you manually download the SDK otherwise the import script in this library should do that for you.
 
 ### Manual installation
 
