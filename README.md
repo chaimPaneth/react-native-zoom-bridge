@@ -268,3 +268,5 @@ await ZoomBridge.joinMeetingWithPassword(
   'Enter password here'
 );
 ```
+
+#### [CHANGELOG](https://github.com/chaimPaneth/react-native-zoom-bridge/releases)
