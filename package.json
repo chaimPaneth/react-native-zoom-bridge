@@ -1,6 +1,6 @@
 {
   "name": "react-native-zoom-bridge",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "React-native bridge for ZoomUs video conference calls SDK",
   "main": "index.js",
   "scripts": {
@@ -12,9 +12,12 @@
   },
   "keywords": [
     "react-native",
-    "Zoom MobileRTC SDK",
+    "Zoom SDK",
+    "MobileRTC",
     "zoom.us",
-    "video calls"
+    "video calls",
+    "conference calls",
+    "chat online"
   ],
   "author": "chaimPaneth <chaim@chaimpaneth.com> (chaimpaneth.com)",
   "license": "MIT",
