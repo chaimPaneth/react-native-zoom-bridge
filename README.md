@@ -290,4 +290,4 @@ As of now this library isn't using MobileRTCScreenShare.framework and we need to
 [Transporter Error Output]: ERROR ITMS-90210: "Missing load commands. The executable at 'appname.app/Frameworks/MobileRTCScreenShare.framework' does not have the necessary load commands. Try rebuilding the app with the latest Xcode version. If you are using third party development tools, contact the provider."
 ```
 
-After running the production SDK import script go to `node_modules/react-native-zoom-bridge/ios/libs` and delete `MobileRTCScreenShare.framework` then run `pod install` and only then prepafe your archive for the App Store.
+After running the production SDK import script go to `node_modules/react-native-zoom-bridge/ios/libs` and delete `MobileRTCScreenShare.framework` then run `pod install` and only then prepare your archive for the App Store.
