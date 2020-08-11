@@ -270,3 +270,24 @@ await ZoomBridge.joinMeetingWithPassword(
 ```
 
 #### [CHANGELOG](https://github.com/chaimPaneth/react-native-zoom-bridge/releases)
+
+#### Important before archiving a build for the App Store
+
+See issue https://github.com/chaimPaneth/react-native-zoom-bridge/issues/24.
+
+As of now this library isn't using MobileRTCScreenShare.framework and we need to delete this after downloading the sdk's otherwise you will get an error as below:
+
+```[Transporter Error Output]: ERROR ITMS-90635: "Invalid Mach-O Format. The Mach-O in bundle "appname.app/Frameworks/MobileRTCScreenShare.framework" isn’t consistent with the Mach-O in the main bundle. The main bundle Mach-O contains arm64(machine code), while the nested bundle Mach-O contains armv7(machine code) and arm64(machine code). Verify that all of the targets for a platform have a consistent value for the ENABLE_BITCODE build setting."
+
+[Transporter Error Output]: ERROR ITMS-90171: "Invalid Bundle Structure - The binary file 'appname.app/Frameworks/MobileRTCScreenShare.framework/MobileRTCScreenShare' is not permitted. Your app can’t contain standalone executables or libraries, other than a valid CFBundleExecutable of supported bundles. Refer to the Bundle Programming Guide at https://developer.apple.com/go/?id=bundle-structure for information on the iOS app bundle structure."
+
+[Transporter Error Output]: ERROR ITMS-90362: "Invalid Info.plist value. The value for the key 'MinimumOSVersion' in bundle appname.app/Frameworks/MobileRTCScreenShare.framework is invalid. The minimum value is 8.0"
+
+[Transporter Error Output]: ERROR ITMS-90124: "The binary is invalid. The executable 'appname.app/Frameworks/MobileRTCScreenShare.framework/MobileRTCScreenShare' has type 'OBJECT' that is not valid. Only 'EXECUTE' is permitted."
+
+[Transporter Error Output]: ERROR ITMS-90125: "The binary is invalid. The encryption info in the LC_ENCRYPTION_INFO load command is either missing or invalid, or the binary is already encrypted. This binary does not seem to have been built with Apple's linker."
+
+[Transporter Error Output]: ERROR ITMS-90210: "Missing load commands. The executable at 'appname.app/Frameworks/MobileRTCScreenShare.framework' does not have the necessary load commands. Try rebuilding the app with the latest Xcode version. If you are using third party development tools, contact the provider."
+```
+
+After running the production SDK import script go to `node_modules/react-native-zoom-bridge/ios/libs` and delete `MobileRTCScreenShare.framework` then run `pod install` and only then prepare your archive for the App Store.
