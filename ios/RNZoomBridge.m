@@ -8,6 +8,8 @@
   RCTPromiseRejectBlock initializePromiseReject;
   RCTPromiseResolveBlock meetingPromiseResolve;
   RCTPromiseRejectBlock meetingPromiseReject;
+  RCTPromiseResolveBlock premeetingPromiseResolve;
+  RCTPromiseRejectBlock premeetingPromiseReject;
 }
 
 - (instancetype)init {
@@ -17,6 +19,8 @@
     initializePromiseReject = nil;
     meetingPromiseResolve = nil;
     meetingPromiseReject = nil;
+    premeetingPromiseResolve = nil;
+    premeetingPromiseReject = nil;
   }
   return self;
 }
@@ -65,6 +69,14 @@ RCT_EXPORT_METHOD(
       [authService sdkAuth];
     } else {
       NSLog(@"onZoomSDKInitializeResult, no authService");
+    }
+      
+    MobileRTCPremeetingService *premeetingSevice = [[MobileRTC sharedRTC] getPreMeetingService];
+    if (premeetingSevice)
+    {
+      premeetingSevice.delegate = self;
+    } else {
+      NSLog(@"onZoomSDKInitializeResult, no premeetingSevice");
     }
   } @catch (NSError *ex) {
       reject(@"ERR_UNEXPECTED_EXCEPTION", @"Executing initialize", ex);
@@ -1449,6 +1461,235 @@ RCT_EXPORT_METHOD(
     BOOL isStartingShare = [service isStartingShare];
     resolve([NSNumber numberWithBool:isStartingShare]);
   }
+}
+
+// Meetings managment
+
+RCT_EXPORT_METHOD(
+  listMeeting:
+  withResolve: (RCTPromiseResolveBlock)resolve
+  withReject: (RCTPromiseRejectBlock)reject
+)
+{
+  MobileRTCPremeetingService *service = [[MobileRTC sharedRTC] getPreMeetingService];
+  if (!service) {
+    reject(
+      @"ERR_ZOOM_SERVICE",
+      [NSString stringWithFormat:@"Error: %d, internalErrorCode=%@", -1, @"Cannot get the premeeting service."],
+      [NSError errorWithDomain:@"us.zoom.sdk" code:-1 userInfo:nil]
+    );
+  } else {
+    premeetingPromiseResolve = resolve;
+    premeetingPromiseReject = reject;
+    [service listMeeting];
+  }
+}
+
+RCT_EXPORT_METHOD(
+  createMeeting:
+  withParams: (NSDictionary *)params
+  withResolve: (RCTPromiseResolveBlock)resolve
+  withReject: (RCTPromiseRejectBlock)reject
+)
+{
+  MobileRTCPremeetingService *service = [[MobileRTC sharedRTC] getPreMeetingService];
+  if (!service) {
+    reject(
+      @"ERR_ZOOM_SERVICE",
+      [NSString stringWithFormat:@"Error: %d, internalErrorCode=%@", -1, @"Cannot get the premeeting service."],
+      [NSError errorWithDomain:@"us.zoom.sdk" code:-1 userInfo:nil]
+    );
+  } else {
+      premeetingPromiseResolve = resolve;
+      premeetingPromiseReject = reject;
+      
+      id<MobileRTCMeetingItem> item = [service createMeetingItem];
+      
+      id topic = params[@"topic"];
+      if ((topic != nil) && (topic != (id)[NSNull null])) {
+        [item setMeetingTopic:topic];
+      }
+      
+      id date = params[@"date"];
+      if ((date != nil) && (date != (id)[NSNull null])) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+        NSDate *startDate = [dateFormatter dateFromString:date];
+      
+        [item setStartTime:startDate];
+      }
+      
+      id timzone = params[@"timzone"];
+      if ((timzone != nil) && (timzone != (id)[NSNull null])) {
+        [item setTimeZoneID:timzone];
+      }
+      
+      id duration = params[@"duration"];
+      if ((duration != nil) && (duration != (id)[NSNull null])) {
+        [item setDurationInMinutes:[duration integerValue]];
+      }
+      
+      [service scheduleMeeting:item WithScheduleFor:@""];
+      [service destroyMeetingItem:item];
+  }
+}
+
+RCT_EXPORT_METHOD(
+  updateMeeting: (NSUInteger*)uniqueId
+  withParams: (NSDictionary *)params
+  withResolve: (RCTPromiseResolveBlock)resolve
+  withReject: (RCTPromiseRejectBlock)reject
+)
+{
+  MobileRTCPremeetingService *service = [[MobileRTC sharedRTC] getPreMeetingService];
+  if (!service) {
+    reject(
+      @"ERR_ZOOM_SERVICE",
+      [NSString stringWithFormat:@"Error: %d, internalErrorCode=%@", -1, @"Cannot get the premeeting service."],
+      [NSError errorWithDomain:@"us.zoom.sdk" code:-1 userInfo:nil]
+    );
+  } else {
+      id<MobileRTCMeetingItem> item = [service getMeetingItemByUniquedID:(unsigned long)uniqueId];
+
+      if (item) {
+        premeetingPromiseResolve = resolve;
+        premeetingPromiseReject = reject;
+          
+        
+        [item setMeetingNumber:123456789];
+        [item setMeetingPassword:@"yyy"];
+          
+        id topic = params[@"topic"];
+        if ((topic != nil) && (topic != (id)[NSNull null])) {
+          [item setMeetingTopic:topic];
+        }
+      
+        id date = params[@"date"];
+        if ((date != nil) && (date != (id)[NSNull null])) {
+          NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+          [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+          NSDate *startDate = [dateFormatter dateFromString:date];
+          
+          [item setStartTime:startDate];
+        }
+      
+        id timzone = params[@"timzone"];
+        if ((timzone != nil) && (timzone != (id)[NSNull null])) {
+           [item setTimeZoneID:timzone];
+        }
+      
+        id duration = params[@"duration"];
+        if ((duration != nil) && (duration != (id)[NSNull null])) {
+           [item setDurationInMinutes:[duration integerValue]];
+        }
+
+        [service editMeeting:item];
+          
+      } else {
+        reject(
+          @"ERR_ZOOM_SERVICE",
+          [NSString stringWithFormat:@"Error: %d, internalErrorCode=%@", -1, @"Cannot get the meeting item."],
+          [NSError errorWithDomain:@"us.zoom.sdk" code:-1 userInfo:nil]
+        );
+      }
+  }
+}
+
+RCT_EXPORT_METHOD(
+  deleteMeeting: (NSUInteger*)uniqueId
+  withResolve: (RCTPromiseResolveBlock)resolve
+  withReject: (RCTPromiseRejectBlock)reject
+)
+{
+  MobileRTCPremeetingService *service = [[MobileRTC sharedRTC] getPreMeetingService];
+  if (!service) {
+    reject(
+      @"ERR_ZOOM_SERVICE",
+      [NSString stringWithFormat:@"Error: %d, internalErrorCode=%@", -1, @"Cannot get the premeeting service."],
+      [NSError errorWithDomain:@"us.zoom.sdk" code:-1 userInfo:nil]
+    );
+  } else {
+      id<MobileRTCMeetingItem> item = [service getMeetingItemByUniquedID:(unsigned long)uniqueId];
+      if (item) {
+          premeetingPromiseResolve = resolve;
+          premeetingPromiseReject = reject;
+          
+          [service deleteMeeting:item];
+      } else {
+          reject(
+            @"ERR_ZOOM_SERVICE",
+            [NSString stringWithFormat:@"Error: %d, internalErrorCode=%@", -1, @"Cannot get the meeting item."],
+            [NSError errorWithDomain:@"us.zoom.sdk" code:-1 userInfo:nil]
+          );
+      }
+  }
+}
+
+#pragma mark - Premeeting delegate
+
+- (void)sinkDeleteMeeting:(PreMeetingError)result {
+    if (result == PreMeetingError_Success) {
+        premeetingPromiseResolve(@"Successfuly deleted meeting");
+    } else {
+        premeetingPromiseReject(
+          @"ERR_ZOOM_SERVICE",
+          [NSString stringWithFormat:@"Error: %d, internalErrorCode=%@, result%d", -1, @"Cannot delete the meeting item.", result],
+          [NSError errorWithDomain:@"us.zoom.sdk" code:-1 userInfo:nil]
+        );
+    }
+    
+    premeetingPromiseResolve = nil;
+    premeetingPromiseReject = nil;
+}
+
+- (void)sinkEditMeeting:(PreMeetingError)result MeetingUniquedID:(unsigned long long)uniquedID {
+    if (result == PreMeetingError_Success) {
+        premeetingPromiseResolve(@"Successfuly editied meeting");
+    } else {
+        premeetingPromiseReject(
+          @"ERR_ZOOM_SERVICE",
+          [NSString stringWithFormat:@"Error: %d, internalErrorCode=%@, result%d, forMeetingId%llu", -1, @"Cannot edit the meeting item.", result, uniquedID],
+          [NSError errorWithDomain:@"us.zoom.sdk" code:-1 userInfo:nil]
+        );
+    }
+    
+    premeetingPromiseResolve = nil;
+    premeetingPromiseReject = nil;
+}
+
+
+- (void)sinkSchedultMeeting:(PreMeetingError)result MeetingUniquedID:(unsigned long long)uniquedID {
+    if (result == PreMeetingError_Success) {
+        premeetingPromiseResolve(@"Successfuly schedult meeting");
+    } else {
+        premeetingPromiseReject(
+          @"ERR_ZOOM_SERVICE",
+          [NSString stringWithFormat:@"Error: %d, internalErrorCode=%@, result%d, forMeetingId%llu", -1, @"Cannot schedule the meeting.", result, uniquedID],
+          [NSError errorWithDomain:@"us.zoom.sdk" code:-1 userInfo:nil]
+        );
+    }
+    
+    premeetingPromiseResolve = nil;
+    premeetingPromiseReject = nil;
+}
+
+
+- (void)sinkListMeeting:(PreMeetingError)result withMeetingItems:(nonnull NSArray *)array {
+    if (result == PreMeetingError_Success) {
+        NSError *error;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error: &error];
+        
+        premeetingPromiseResolve(@{@"meetingsList": [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]});
+    } else {
+        premeetingPromiseReject(
+          @"ERR_ZOOM_SERVICE",
+          [NSString stringWithFormat:@"Error: %d, internalErrorCode=%@, result%d", -1, @"Cannot list the meetings.", result],
+          [NSError errorWithDomain:@"us.zoom.sdk" code:-1 userInfo:nil]
+        );
+    }
+    
+    premeetingPromiseResolve = nil;
+    premeetingPromiseReject = nil;
 }
 
 @end
