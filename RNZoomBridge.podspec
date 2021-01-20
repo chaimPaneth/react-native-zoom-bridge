@@ -26,6 +26,7 @@ Pod::Spec.new do |s|
     'NSCameraUsageDescription' => 'For people to see you during meetings, we need access to your camera.',
     'NSMicrophoneUsageDescription' => 'For people to hear you during meetings, we need access to your microphone.',
     'NSPhotoLibraryUsageDescription' => 'For people to share, we need access to your photos',
-    'NSBluetoothPeripheralUsageDescription' => 'We will use your Bluetooth to access your Bluetooth headphones.'
+    'NSBluetoothPeripheralUsageDescription' => 'We will use your Bluetooth to access your Bluetooth headphones.',
+    'NSBluetoothAlwaysUsageDescription' => 'We will use your Bluetooth to access your Bluetooth headphones.'
   }
 end
