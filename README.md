@@ -173,6 +173,7 @@ and that you have build tools 29 installed.
 * `NSMicrophoneUsageDescription`
 * `NSPhotoLibraryUsageDescription`
 * `NSBluetoothPeripheralUsageDescription`
+* `NSBluetoothAlwaysUsageDescription`
   
 ## Important
 
